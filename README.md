@@ -27,25 +27,26 @@ The resulting data can later be updated in this app. However, since it cannot be
 I think the hardest part was the implementation of REACT, and that was it.
 I learned about Flask in CS50, so I understand the basics, but react is very deep, and it took me a lot of help from many websites, githubes, and other video sites to understand it.
 As some of you may know, react is a frontend framework. That is, it is in charge of the client-side structure and is primarily responsible for browser behavior.
-To start react, type the following command
+To start react, type the following command.
 
-```````
+```
 npx create-react-app my-app
 cd my-app
 npm start
-...
+```
 
 Then, when you start the client server, you type this command.
 
-...
+```
 npm start
-...
+```
 
 I use npm, but if you are using yarn, type the command like this.
 
-...
+```
 yarn create react-app my-app
-...
+```
+
 
 
 
