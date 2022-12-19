@@ -40,7 +40,7 @@ processes = []
     restart_limit = 0
     timeout = "2s"
 
-
+[[github deploy]]
 name: housekeep-app
 on:
   push:
