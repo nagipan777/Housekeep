@@ -9,7 +9,7 @@ processes = []
   image = "flyio/hellofly:latest"
 
 [env]
-
+  FLY_API_TOKE = ${{ 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 }}
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
@@ -39,3 +39,18 @@ processes = []
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
+
+    [[Github deploy]]
+name: housekeep-app
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+      name: housekeep-app
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - uses: superfly/flyctl-actions/setup-flyctl@master
+        - run: flyctl deploy --remote-only
