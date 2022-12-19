@@ -9,6 +9,7 @@ processes = []
   image = "flyio/hellofly:latest"
 
 [env]
+env:
   FLY_API_TOKE = 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
 [experimental]
   allowed_public_ports = []
