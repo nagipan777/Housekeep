@@ -61,3 +61,40 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+.hidden{
+  display:hidden;
+}
+
+.modal-overlay {
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  display: block;
+  background: white;
+  width: 60%;
+  height: auto;
+  line-height:1.8rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.modal-box2 {
+  display: block;
+  background: white;
+  width: 50%;
+  height: auto;
+  line-height:1.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}

@@ -1,25 +1,36 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import httpFront from './httpFront';
 
 const Register : React.FC = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [success, setSuccess] =useState(false);
+    const [errormessage, getError] = useState(null);
+    const navigete = useNavigate()
 
     const NewUser = async () => {
-        console.log(email, password);
         try{
-            const Auth = await httpFront.post('http://logalhost:5000/register',{
+            const Auth = await httpFront.post('http://localhost:5000/register',{   
             email,
             password,
         });
         if(Auth.status === 200){
-            window.location.href= '/';
+            getError(null);
+            setSuccess(true);
+            setTimeout(() => {
+            navigete("/payment");
+              }, 3 * 1000);   
         }
         }catch(error: any){
             console.log(error.response.status);
+            if (error.response.status === 401){
+                getError(error.response.data.error);
+            }else if(error.response.status === 409){
+                getError(error.response.data.error);
+            }
         };           
    };
-
     return   (
         <div className='container mx-auto my-4'>
             <h1 className="text-xl">Sign Up Your Account.</h1>
@@ -31,7 +42,7 @@ const Register : React.FC = () => {
                 </div>
                 <div className="md:w-2/3">
                 <input 
-                    type="text" 
+                    type="email" 
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)} 
                     id="" 
@@ -49,10 +60,29 @@ const Register : React.FC = () => {
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)} 
                     id="" 
+                    
                     className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'
                     />
                 </div>
                 </div>
+                <div className="items-center">
+                {success === true ? (
+            <div className='md:items-center border-green-700 bg-green-200'>
+                <p className='text-green-600 px-2.5 py-5'>Your successed This Account!</p>
+            </div>
+        ):(
+            <div className='hidden'>
+            </div>
+        )}
+        {errormessage != null ? (
+            <div className='md:items-center border-red-700 bg-red-200'>
+                <p className='text-red-600 px-2.5 py-5'>{errormessage}</p>
+            </div>
+        ):(
+            <div className='hidden'>
+            </div>
+        )}
+            </div>
                 <div className="md:flex md:items-center">
                 <div className="md:w-1/3"></div>
                 <div className="md:w-2/3">

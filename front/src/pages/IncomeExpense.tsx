@@ -19,11 +19,15 @@ function IncomExpense (){
             }
         }
 
-    if(!total) return null;
+    if(!total) return (
+        <div>
+            <h3 className='text-5xl'>￥0</h3> 
+         </div>
+    );
     //const totalblance  = total.toLocaleString();
     return (
          <div>
-            <h3 className='text-4xl'>￥{total.total.toLocaleString()}</h3> 
+            <h3 className='text-5xl'>￥{total.total.toLocaleString()}</h3> 
          </div>
      )
 }
